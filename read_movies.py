@@ -22,6 +22,7 @@ def print_movie(movie):
     title = movie.get("Title", "Unknown Title")
     year = movie.get("Year", "Unknown Year")
     ratings = movie.get("Ratings", "No ratings")
+    runtime = movie.get("Runtime", "Unkown runtime")
 
     print(f"  Title  : {title}")
     print(f"  Year   : {year}")
