@@ -67,6 +67,7 @@ def get_movie_by_title():
     response = table.scan(
         FilterExpression=Attr("title").eq(title)
     )
+
 # I asked chatGPT how the FilterExpression works and an example of how I could use it.
 # It told me it is used to "filter results after DynamoDB reads them".
 # It also said you usually import "from boto3.dynamodb.conditions import Attr", then
