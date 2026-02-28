@@ -4,6 +4,7 @@
 
 import boto3
 from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Attr
 
 # -------------------------------------------------------
 # Configuration — update REGION if your table is elsewhere
@@ -57,3 +58,26 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def get_movie_by_title():
+    table = get_table()
+    title = input("Enter movie title: ").strip()
+
+    response = table.scan(
+        FilterExpression=Attr("title").eq(title)
+    )
+# I asked chatGPT how the FilterExpression works and an example of how I could use it.
+# It told me it is used to "filter results after DynamoDB reads them".
+# It also said you usually import "from boto3.dynamodb.conditions import Attr", then
+# build a condition like "FilterExpression=Attr("rating").gt(8)". So, this is what I did.
+
+    items = response.get("Items", [])
+
+    if not items:
+        print(f"No movie found with title '{title}'.")
+        return
+    
+    print(f"\nFound {len(items)} movie(s):\n")
+    for movie in items:
+        print_movie(movie)
