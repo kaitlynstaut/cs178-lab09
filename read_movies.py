@@ -56,10 +56,6 @@ def main():
     print_all_movies()
 
 
-if __name__ == "__main__":
-    main()
-
-
 def get_movie_by_title():
     table = get_table()
     title = input("Enter movie title: ").strip()
@@ -82,3 +78,7 @@ def get_movie_by_title():
     print(f"\nFound {len(items)} movie(s):\n")
     for movie in items:
         print_movie(movie)
+
+
+if __name__ == "__main__":
+    get_movie_by_title()
